@@ -33,6 +33,10 @@
 #ifndef BASE_BASE64_H
 #define BASE_BASE64_H
 
+#ifdef __GNUC__
+# include <cstdint>
+#endif
+
 #include <string>
 #include <memory>
 #include <vector>
