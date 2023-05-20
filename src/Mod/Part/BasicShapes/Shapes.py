@@ -229,8 +229,9 @@ def showPreselectInfo():
                                          ('Closed', 'isClosed'),
                                          ('FirstVertex', 'firstVertex'),
                                          ('LastVertex', 'lastVertex'),
-                                         'ParameterRange',
                                         ))
+    if not shape.isInfinite():
+        txt = _getGeoAttributes(txt, shape, ('ParameterRange',))
 
     geo = getattr(shape, 'Curve', None)
     if geo:
