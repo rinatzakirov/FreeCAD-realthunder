@@ -1138,8 +1138,7 @@ bool ViewProviderDocumentObject::isShowable(bool refresh) {
 bool ViewProviderDocumentObject::setEdit(int ModNum)
 {
     if (ModNum == ExportInGroup) {
-        auto group = App::GroupExtension::getAnyGroupOfObject(getObject());
-        if (group) {
+        if (auto group = App::GroupExtension::getAnyGroupOfObject(getObject())) {
             auto ext = group->getExtensionByType<App::GroupExtension>(true);
             if (ext) {
                 std::string name(QT_TRANSLATE_NOOP("Command", "Toggle export "));
@@ -1169,8 +1168,7 @@ void ViewProviderDocumentObject::getExtraIcons(
 
     auto prop = App::GroupExtension::getChildExportProperty(getObject());
     if (prop && prop->getValue()) {
-        auto group = App::GroupExtension::getAnyGroupOfObject(getObject());
-        if (group) {
+        if (auto group = App::GroupExtension::getAnyGroupOfObject(getObject())) {
             auto ext = group->getExtensionByType<App::GroupExtension>(true);
             if (ext && ext->ExportMode.getValue() == App::GroupExtension::ExportByChildQuery) {
                 icons.emplace_back(_iconTagExport, 
@@ -1217,8 +1215,7 @@ void ViewProviderDocumentObject::setupContextMenu(QMenu* menu, QObject* receiver
     // Show export menu action if this object is part of a group that is
     // exporting its children, but not exporting by visibility.
     if (App::GroupExtension::getChildExportProperty(getObject())) {
-        auto group = App::GroupExtension::getGroupOfObject(getObject());
-        if (group) {
+        if (auto group = App::GroupExtension::getAnyGroupOfObject(getObject())) {
             auto ext = group->getExtensionByType<App::GroupExtension>(true);
             if (ext && ext->ExportMode.getValue() != App::GroupExtension::ExportByVisibility) {
                 bool found = false;

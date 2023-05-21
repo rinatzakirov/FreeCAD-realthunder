@@ -553,7 +553,7 @@ void Body::onSettingDocument() {
     Part::BodyBase::onSettingDocument();
 }
 
-bool Body::getChildDefaultExport(App::DocumentObject *) const
+bool Body::getChildDefaultExport(App::DocumentObject *, int) const
 {
     return false;
 }
